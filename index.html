@@ -19,6 +19,24 @@
           <input id="upload" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
         </div>
 
+        <section class="preview-grid">
+          <article class="preview-card">
+            <h2>Original Preview</h2>
+            <div class="preview-box">
+              <img id="originalPreview" alt="Original uploaded preview" />
+              <span id="originalPlaceholder">No image selected</span>
+            </div>
+          </article>
+
+          <article class="preview-card">
+            <h2>Background Removed</h2>
+            <div class="preview-box transparent-bg">
+              <img id="processedPreview" alt="Background removed preview" />
+              <span id="processedPlaceholder">Generate to preview</span>
+            </div>
+          </article>
+        </section>
+
         <section class="controls" aria-label="Photo settings">
           <div class="control-group">
             <label for="qty">Quantity</label>
@@ -56,24 +74,6 @@
         </div>
 
         <p id="status" class="status" aria-live="polite"></p>
-
-        <section class="preview-grid">
-          <article class="preview-card">
-            <h2>Original Preview</h2>
-            <div class="preview-box">
-              <img id="originalPreview" alt="Original uploaded preview" />
-              <span id="originalPlaceholder">No image selected</span>
-            </div>
-          </article>
-
-          <article class="preview-card">
-            <h2>Background Removed</h2>
-            <div class="preview-box transparent-bg">
-              <img id="processedPreview" alt="Background removed preview" />
-              <span id="processedPlaceholder">Generate to preview</span>
-            </div>
-          </article>
-        </section>
 
         <section class="sheet-wrap">
           <h2 id="sheetTitle">Printable 4 x 6 in Sheet Preview</h2>
