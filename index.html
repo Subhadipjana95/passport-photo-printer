@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Passport Photo Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <header class="hero">
+          <h1>Passport Photo Generator</h1>
+          <p>Upload once, remove background, and print a clean passport photo sheet.</p>
+        </header>
+
+        <div class="uploader-wrap">
+          <label for="upload" class="upload-label">Upload Photo</label>
+          <input id="upload" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+        </div>
+
+        <section class="controls" aria-label="Photo settings">
+          <div class="control-group">
+            <label for="qty">Quantity</label>
+            <input id="qty" type="number" min="1" max="20" value="3" />
+          </div>
+
+          <div class="control-group">
+            <label for="sizePreset">Passport Size</label>
+            <select id="sizePreset">
+              <option value="35x45">35 x 45 mm (Standard)</option>
+              <option value="51x51">51 x 51 mm (US 2x2 in)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="sheetPreset">Sheet Size</label>
+            <select id="sheetPreset">
+              <option value="4x6" selected>4 x 6 in (Default)</option>
+              <option value="5x7">5 x 7 in</option>
+              <option value="a4">A4</option>
+            </select>
+          </div>
+
+          <div class="control-group checkbox-group">
+            <label for="showGuides">Cut Guides</label>
+            <input id="showGuides" type="checkbox" checked />
+          </div>
+        </section>
+
+        <button id="process" class="primary-btn">Remove Background &amp; Generate</button>
+
+        <div id="loading" class="loading hidden" role="status" aria-live="polite">
+          <span class="spinner" aria-hidden="true"></span>
+          <span>Processing photo...</span>
+        </div>
+
+        <p id="status" class="status" aria-live="polite"></p>
+
+        <section class="preview-grid">
+          <article class="preview-card">
+            <h2>Original Preview</h2>
+            <div class="preview-box">
+              <img id="originalPreview" alt="Original uploaded preview" />
+              <span id="originalPlaceholder">No image selected</span>
+            </div>
+          </article>
+
+          <article class="preview-card">
+            <h2>Background Removed</h2>
+            <div class="preview-box transparent-bg">
+              <img id="processedPreview" alt="Background removed preview" />
+              <span id="processedPlaceholder">Generate to preview</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="sheet-wrap">
+          <h2 id="sheetTitle">Printable 4 x 6 in Sheet Preview</h2>
+          <canvas id="sheet" width="1800" height="1200"></canvas>
+        </section>
+
+        <div class="actions">
+          <button id="download" disabled>Download PNG</button>
+          <button id="copy" disabled>Copy</button>
+          <button id="print" disabled>Print</button>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
