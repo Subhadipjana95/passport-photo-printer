@@ -222,7 +222,7 @@ select {
 canvas {
   width: 100%;
   max-width: 760px;
-  aspect-ratio: 2480 / 3508;
+  height: auto;
   border-radius: 8px;
   border: 1px solid #d5dce8;
   background: #fff;
