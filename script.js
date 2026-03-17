@@ -1,5 +1,5 @@
-const REMOVE_BG_API_KEY = "vosag8bJMNnBDQffVj5n8vru";
-const REMOVE_BG_ENDPOINT = "https://api.remove.bg/v1.0/removebg";
+let API_KEY = "";
+const API_ENDPOINT = "https://api.remove.bg/v1.0/removebg";
 
 const DPI = 300;
 const MM_PER_INCH = 25.4;
@@ -46,6 +46,17 @@ const appState = {
   generated: false,
   sheetPx: { width: 1800, height: 1200 },
 };
+
+async function getRemoveBgApiKey() {
+  if (API_KEY) {
+    return API_KEY;
+  }
+
+  const envText = await fetch(".env", { cache: "no-store" }).then((response) => response.text());
+  const match = envText.match(/^\s*REMOVE_BG_API_KEY\s*=\s*["']?([^"'\r\n]+)["']?\s*$/m);
+  API_KEY = match ? match[1].trim() : "";
+  return API_KEY;
+}
 
 function mmToPx(mm) {
   return Math.round((mm / MM_PER_INCH) * DPI);
@@ -147,14 +158,16 @@ function loadImageFromObjectUrl(url) {
 }
 
 async function removeBackground(file) {
+  const apiKey = await getRemoveBgApiKey();
+
   const formData = new FormData();
   formData.append("image_file", file);
   formData.append("size", "auto");
   formData.append("format", "png");
 
-  const response = await fetch(REMOVE_BG_ENDPOINT, {
+  const response = await fetch(API_ENDPOINT, {
     method: "POST",
-    headers: { "X-Api-Key": REMOVE_BG_API_KEY },
+    headers: { "X-Api-Key": apiKey },
     body: formData,
   });
 
